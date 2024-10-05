@@ -1,13 +1,22 @@
 package main
 
 import (
-	"github.com/georgechieng-sc/interns-2022/folders"
+	"fmt"
+
+	"github.com/georgechieng-sc/interns-2022/folder"
+	"github.com/gofrs/uuid"
 )
 
 func main() {
-	res := folders.GenerateData()
+	orgID := uuid.FromStringOrNil(folder.DefaultOrgID)
 
-	folders.PrettyPrint(res)
+	res := folder.GetAllFolders()
 
-	folders.WriteSampleData(res)
+	// example usage
+	folderDriver := folder.NewDriver(res)
+	orgFolder := folderDriver.GetFoldersByOrgID(orgID)
+
+	folder.PrettyPrint(res)
+	fmt.Printf("\n Folders for orgID: %s", orgID)
+	folder.PrettyPrint(orgFolder)
 }
