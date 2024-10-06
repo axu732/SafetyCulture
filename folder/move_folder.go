@@ -52,7 +52,7 @@ func (f *driver) MoveFolder(name string, dst string) ([]Folder, error) {
 	}
 
 	// Check if the destination folder is a child of the source folder
-	if strings.HasPrefix(dstFolder.Paths, srcFolder.Paths+".") {
+	if strings.HasPrefix(dstFolder.Paths, srcFolder.Paths) {
 		return nil, ErrCantMoveToChild
 	}
 
@@ -64,10 +64,6 @@ func (f *driver) MoveFolder(name string, dst string) ([]Folder, error) {
 		if strings.HasPrefix(folder.Paths, oldPrefix) {
 			f.folders[i].Paths = strings.Replace(folder.Paths, oldPrefix, newPrefix, 1)
 		}
-	}
-
-	for _, folder := range f.folders {
-		println(folder.Paths)
 	}
 
 	return f.folders, nil
