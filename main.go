@@ -14,7 +14,11 @@ func main() {
 
 	// example usage
 	folderDriver := folder.NewDriver(res)
-	orgFolder := folderDriver.GetFoldersByOrgID(orgID)
+	orgFolder, err := folderDriver.GetFoldersByOrgID(orgID)
+	if err != nil {
+		fmt.Printf("Error getting folders by orgID: %v\n", err)
+		return
+	}
 
 	folder.PrettyPrint(res)
 	fmt.Printf("\n Folders for orgID: %s", orgID)
