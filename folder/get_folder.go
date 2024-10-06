@@ -74,12 +74,10 @@ func (f *driver) GetAllChildFolders(orgID uuid.UUID, name string) ([]Folder, err
 
 	// Find all child folders of the parent folder
 	childFolders := []Folder{}
-	println(name)
 	prefix := parentFolder.Paths + "."
 
 	// Find all child folders of the parent folder
 	for _, f := range folders {
-		println(f.Paths)
 		if strings.HasPrefix(f.Paths, prefix) {
 			childFolders = append(childFolders, f)
 		}

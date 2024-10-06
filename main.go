@@ -16,7 +16,7 @@ func main() {
 	folderDriver := folder.NewDriver(res)
 	orgFolder, err := folderDriver.GetFoldersByOrgID(orgID)
 	if err != nil {
-		fmt.Printf("Error getting folders by orgID: %v\n", err)
+		fmt.Println(err)
 		return
 	}
 
